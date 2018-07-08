@@ -1,0 +1,19 @@
+language: scala
+scala:
+ - 2.12.4
+
+branches:
+ only:
+  - master
+
+cache:
+  directories:
+    - '$HOME/.ivy2/cache'
+    - '$HOME/.sbt/boot/'
+
+script:
+  - sbt clean coverage test coverageReport
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+  - CODACY_PROJECT_TOKEN="68d05476268f4e24bee35afae04eda12" sbt codacyCoverage
