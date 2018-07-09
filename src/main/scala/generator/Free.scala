@@ -44,11 +44,6 @@ object Free {
   def canonical(polyomino: Polyomino): Polyomino = {
     import Ordering.Implicits._
 
-    val rot = rotationsAndReflections(polyomino)
-    val rot1 = rot.map(translateToOrigin)
-    val rot2 = rot1.map(poly => poly.sorted)
-    val rots = rot1.take(1).sorted
-    val rot3 = rot2.min
     rotationsAndReflections(polyomino)
       .map(translateToOrigin)
       .map(poly => poly.sorted).min
