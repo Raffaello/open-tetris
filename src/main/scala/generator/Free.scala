@@ -5,7 +5,7 @@ import scala.annotation.tailrec
 /**
   * @see [[https://wiki.haskell.org/The_Monad.Reader/Issue5/Generating_Polyominoes]]
   */
-object Generator {
+object Free {
   type Point = (Int, Int)
   type Polyomino = List[Point]
 
@@ -17,7 +17,9 @@ object Generator {
 
   def reflect(p: Point): Point = (-p._1, p._2)
 
-  def minima(polyomino: Polyomino): Point = polyomino.min
+  def minima(polyomino: Polyomino): Point = {
+    polyomino.reduce((a,b) => (Math.min(a._1, b._1), Math.min(a._2, b._2)))
+  }
 
   def translateToOrigin(polyomino: Polyomino): Polyomino = {
     val m = minima(polyomino)
@@ -41,6 +43,12 @@ object Generator {
 
   def canonical(polyomino: Polyomino): Polyomino = {
     import Ordering.Implicits._
+
+    val rot = rotationsAndReflections(polyomino)
+    val rot1 = rot.map(translateToOrigin)
+    val rot2 = rot1.map(poly => poly.sorted)
+    val rots = rot1.take(1).sorted
+    val rot3 = rot2.min
     rotationsAndReflections(polyomino)
       .map(translateToOrigin)
       .map(poly => poly.sorted).min
@@ -60,7 +68,7 @@ object Generator {
   }
 
   def newPolyominos(polyomino: Polyomino): List[Polyomino] = {
-    newPoints(polyomino).map(p => canonical(p :: polyomino))
+    newPoints(polyomino).map(p => canonical(p :: polyomino)).distinct
   }
 
   val monomino: Polyomino = List((0, 0))
