@@ -1,9 +1,8 @@
 package generator
 
-import scala.annotation.tailrec
-
 /**
   * @see [[https://wiki.haskell.org/The_Monad.Reader/Issue5/Generating_Polyominoes]]
+  * @deprecated doesn't return lower rank and is not tail recursive
   */
 object Free {
   type Point = (Int, Int)
@@ -48,8 +47,6 @@ object Free {
       .map(translateToOrigin)
       .map(poly => poly.sorted).min
   }
-
-//  def unique[T](a: List[T] => List[T]) = Set(a).toList
 
   def contiguous(p: Point): List[Point] = List(
     (p._1 - 1, p._2),
