@@ -1,6 +1,6 @@
 package generator
 
-import generator.Free.Polyomino
+import generator.Utils.Polyomino
 import org.scalatest.{FlatSpec, Matchers}
 
 class FreeSpec extends FlatSpec with Matchers {
@@ -10,8 +10,8 @@ class FreeSpec extends FlatSpec with Matchers {
   }
 
   "tranaslateToOrigin" should "be correct" in {
-    Free.translateToOrigin(List((1,1), (-1,1))) should be (List((2,0),(0,0)))
-    Free.translateToOrigin(List((-1,1), (0,1), (0,0), (0,-1))) should be (List((0,2), (1,2), (1,1), (1,0)))
+    Free.translateToOrigin(List((-1,1), (0,1), (0,0), (0,-1))) should
+      be (List((0,2), (1,2), (1,1), (1,0)))
   }
 
   "Free generator" should "generate Monominos correctly" in {
@@ -37,8 +37,6 @@ class FreeSpec extends FlatSpec with Matchers {
       List((0,0), (0,1), (0,2), (1,0), (2,0)),
       List((0,0), (0,1), (0,2), (0,3), (0,4)))
 
-    val tetronimoes = Free.rank(5)
-    tetronimoes.foreach(t => println(t.mkString(" ")))
-    tetronimoes should be (expected)
+      Free.rank(5) should be (expected)
   }
 }

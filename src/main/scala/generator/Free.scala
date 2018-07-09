@@ -1,12 +1,12 @@
 package generator
 
+import generator.Utils.{Point, Polyomino, monominos}
+
 /**
   * @see [[https://wiki.haskell.org/The_Monad.Reader/Issue5/Generating_Polyominoes]]
   * @deprecated doesn't return lower rank and is not tail recursive
   */
 object Free {
-  type Point = (Int, Int)
-  type Polyomino = List[Point]
 
   def rotate90(p: Point): Point = (p._2, -p._1)
 
@@ -62,9 +62,6 @@ object Free {
   def newPolyominos(polyomino: Polyomino): List[Polyomino] = {
     newPoints(polyomino).map(p => canonical(p :: polyomino)).distinct
   }
-
-  val monomino: Polyomino = List((0, 0))
-  val monominos: List[Polyomino] = List(monomino)
 
 //  @tailrec
   def rank(n: Int): List[Polyomino] = {
