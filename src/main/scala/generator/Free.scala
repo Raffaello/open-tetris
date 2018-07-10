@@ -1,29 +1,18 @@
 package generator
 
-import generator.Utils.{Point, Polyomino, monominos}
+import generator.Utils.{
+  Point, Polyomino, monominos, reflect, rotate90, rotate180, rotate270, contiguous,
+  translateToOrigin
+}
+
+import scala.annotation.tailrec
+import scala.collection.mutable.ListBuffer
 
 /**
   * @see [[https://wiki.haskell.org/The_Monad.Reader/Issue5/Generating_Polyominoes]]
-  * @deprecated doesn't return lower rank and is not tail recursive
+  * @deprecated doesn't return lower rank and is not tail recursive and not one-side
   */
 object Free {
-
-  def rotate90(p: Point): Point = (p._2, -p._1)
-
-  def rotate180(p: Point): Point = (-p._1, -p._2)
-
-  def rotate270(p: Point): Point = (-p._2, p._1)
-
-  def reflect(p: Point): Point = (-p._1, p._2)
-
-  def minima(polyomino: Polyomino): Point = {
-    polyomino.reduce((a,b) => (Math.min(a._1, b._1), Math.min(a._2, b._2)))
-  }
-
-  def translateToOrigin(polyomino: Polyomino): Polyomino = {
-    val m = minima(polyomino)
-    polyomino.map(p => (p._1 - m._1, p._2 - m._2))
-  }
 
   //  val rotations = Array[Point => Point](rotate90, rotate180, rotate270)
   def rotationsAndReflections(polyomino: Polyomino): List[Polyomino] = {
@@ -48,13 +37,6 @@ object Free {
       .map(poly => poly.sorted).min
   }
 
-  def contiguous(p: Point): List[Point] = List(
-    (p._1 - 1, p._2),
-    (p._1 + 1, p._2),
-    (p._1, p._2 - 1),
-    (p._1, p._2 + 1),
-  )
-
   def newPoints(polyomino: Polyomino): List[Point] = {
     polyomino.flatMap(contiguous).filterNot(polyomino.contains(_)).distinct
   }
@@ -63,7 +45,6 @@ object Free {
     newPoints(polyomino).map(p => canonical(p :: polyomino)).distinct
   }
 
-//  @tailrec
   def rank(n: Int): List[Polyomino] = {
     require(n >= 0)
     n match {
@@ -71,5 +52,20 @@ object Free {
       case 1 => monominos
       case _ => rank(n - 1).flatMap(newPolyominos).distinct
     }
+  }
+
+  def accumulativeRank(n: Int): List[Polyomino] = {
+    require(n >= 1)
+
+    @tailrec
+    def innerLoop(n: Int, acc: ListBuffer[Polyomino]): ListBuffer[Polyomino] = {
+      n match {
+        case 1 => acc
+        case _ => innerLoop(n - 1, acc.flatMap(newPolyominos) ++=: acc)
+      }
+    }
+
+    val polyominoes = ListBuffer[Polyomino]()
+    innerLoop(n, monominos ++=: polyominoes).distinct.toList.reverse
   }
 }

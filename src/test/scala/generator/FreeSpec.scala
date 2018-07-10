@@ -1,21 +1,12 @@
 package generator
 
-import generator.Utils.Polyomino
+import generator.Utils.{Polyomino, monominos, monomino}
 import org.scalatest.{FlatSpec, Matchers}
 
 class FreeSpec extends FlatSpec with Matchers {
 
-  "minima" should "be correct" in {
-    Free.minima(List((-1,1), (0,1), (0,0), (0,-1))) should be ((-1,-1))
-  }
-
-  "tranaslateToOrigin" should "be correct" in {
-    Free.translateToOrigin(List((-1,1), (0,1), (0,0), (0,-1))) should
-      be (List((0,2), (1,2), (1,1), (1,0)))
-  }
-
   "Free generator" should "generate Monominos correctly" in {
-    Free.rank(1) should be (List(List((0,0))))
+    Free.rank(1) should be (monominos)
   }
 
   "Free generator" should "generate Dominos correctly" in {
@@ -38,5 +29,13 @@ class FreeSpec extends FlatSpec with Matchers {
       List((0,0), (0,1), (0,2), (0,3), (0,4)))
 
       Free.rank(5) should be (expected)
+  }
+
+  "Free iterator" should "generate until dominos correctly" in {
+    Free.accumulativeRank(2) should be(List(monomino, List((0,0),(0,1))))
+  }
+
+  "Free iterator" should "generate until pentominoes correctly" in {
+    Free.accumulativeRank(5) should have size(12+5+2+1+1)
   }
 }
