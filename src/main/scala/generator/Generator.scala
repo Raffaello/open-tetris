@@ -2,11 +2,9 @@ package generator
 
 import scala.annotation.tailrec
 import scala.collection.mutable.ListBuffer
+import scala.language.implicitConversions
 
 trait Generator {
-
-  import scala.language.implicitConversions
-
   type Point = (Int, Int)
   type Polyomino = List[Point]
 

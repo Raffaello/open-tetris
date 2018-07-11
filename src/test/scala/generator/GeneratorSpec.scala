@@ -1,10 +1,11 @@
 package generator
 
 import org.scalatest.{FlatSpec, Matchers}
+import scala.language.implicitConversions
 
 class GeneratorSpec extends FlatSpec with Matchers with Generator {
 
-  import scala.language.implicitConversions
+
 
   protected implicit def transformation(polyomino: Polyomino): List[Polyomino] = Nil
 
