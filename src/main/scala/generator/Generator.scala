@@ -48,7 +48,7 @@ trait Generator {
 
   protected implicit def transformation(polyomino: Polyomino): List[Polyomino]
 
-  protected[this] def canonical(polyomino: Polyomino)(implicit transformation: Polyomino => List[Polyomino]): Polyomino = {
+  private[this] def canonical(polyomino: Polyomino)(implicit transformation: Polyomino => List[Polyomino]): Polyomino = {
     import Ordering.Implicits._
 
     transformation(polyomino)
@@ -56,11 +56,11 @@ trait Generator {
       .map(poly => poly.sorted).min
   }
 
-  protected[this] def newPoints(polyomino: Polyomino): List[Point] = {
+  private[this] def newPoints(polyomino: Polyomino): List[Point] = {
     polyomino.flatMap(contiguous).filterNot(polyomino.contains(_)).distinct
   }
 
-  protected def newPolyominos(polyomino: Polyomino): List[Polyomino] = {
+  private[this] def newPolyominos(polyomino: Polyomino): List[Polyomino] = {
     newPoints(polyomino).map(p => canonical(p :: polyomino)).distinct
   }
 

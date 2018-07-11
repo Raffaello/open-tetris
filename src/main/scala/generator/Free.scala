@@ -2,7 +2,6 @@ package generator
 
 /**
   * @see [[https://wiki.haskell.org/The_Monad.Reader/Issue5/Generating_Polyominoes]]
-  * @deprecated doesn't return lower rank and is not tail recursive and not one-side
   */
 object Free extends Generator {
 
