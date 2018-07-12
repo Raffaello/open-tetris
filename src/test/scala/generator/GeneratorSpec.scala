@@ -5,8 +5,6 @@ import scala.language.implicitConversions
 
 class GeneratorSpec extends FlatSpec with Matchers with Generator {
 
-
-
   protected implicit def transformation(polyomino: Polyomino): List[Polyomino] = Nil
 
   "minima" should "be correct" in {

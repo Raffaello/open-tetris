@@ -1,8 +1,6 @@
 package generator
 
-//import generator.Utils.{Polyomino, monominos, monomino}
 import org.scalatest.{FlatSpec, Matchers}
-import Free._
 
 class FreeSpec extends FlatSpec with Matchers {
 

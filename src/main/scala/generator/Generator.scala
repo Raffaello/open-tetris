@@ -5,11 +5,6 @@ import scala.collection.mutable.ListBuffer
 import scala.language.implicitConversions
 
 trait Generator {
-  type Point = (Int, Int)
-  type Polyomino = List[Point]
-
-  val monomino: Polyomino = List((0, 0))
-  val monominos: List[Polyomino] = List(monomino)
 
   def rotate90(p: Point): Point = (p._2, -p._1)
 
@@ -73,7 +68,6 @@ trait Generator {
 
   def accumulativeRank(n: Int): List[Polyomino] = {
     require(n >= 1)
-
     @tailrec
     def innerLoop(n: Int, acc: ListBuffer[Polyomino]): ListBuffer[Polyomino] = {
       n match {

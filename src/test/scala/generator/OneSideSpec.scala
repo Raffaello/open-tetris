@@ -1,6 +1,6 @@
 package generator
 
-import generator.OneSide._
+import generator.OneSide.{accumulativeRank, rank}
 import org.scalatest.{FlatSpec, Matchers}
 
 class OneSideSpec extends FlatSpec with Matchers{
