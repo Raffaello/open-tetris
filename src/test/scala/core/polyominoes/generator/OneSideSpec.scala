@@ -1,11 +1,11 @@
-package generator
+package core.polyominoes.generator
 
-import generator.OneSide.{accumulativeRank, rank}
+import core.polyominoes.generator.OneSide.{accumulativeRank, rank}
 import org.scalatest.{FlatSpec, Matchers}
 
 class OneSideSpec extends FlatSpec with Matchers{
 
-  "OneSide generator" should "generate Dominos correctly" in {
+  "OneSide core.polyominoes.generator" should "generate Dominos correctly" in {
     rank(2) should be (List(List((0,0), (0,1))))
   }
 

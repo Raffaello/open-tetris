@@ -1,10 +1,10 @@
-package generator
+package core.polyominoes.generator
 
 import scala.annotation.tailrec
 import scala.collection.mutable.ListBuffer
 import scala.language.implicitConversions
 
-trait Generator {
+private[generator] trait Generator {
 
   def rotate90(p: Point): Point = (p._2, -p._1)
 

@@ -1,4 +1,4 @@
-package generator
+package core.polyominoes.generator
 
 import scala.language.implicitConversions
 

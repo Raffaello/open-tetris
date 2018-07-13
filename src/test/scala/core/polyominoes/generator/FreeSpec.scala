@@ -1,18 +1,18 @@
-package generator
+package core.polyominoes.generator
 
 import org.scalatest.{FlatSpec, Matchers}
 
 class FreeSpec extends FlatSpec with Matchers {
 
-  "Free generator" should "generate Monominos correctly" in {
+  "Free core.polyominoes.generator" should "generate Monominos correctly" in {
     Free.rank(1) should be (monominos)
   }
 
-  "Free generator" should "generate Dominos correctly" in {
+  "Free core.polyominoes.generator" should "generate Dominos correctly" in {
     Free.rank(2) should be (List(List((0,0), (0,1))))
   }
 
-  "Free generator" should "generate Pentominoes correctly" in {
+  "Free core.polyominoes.generator" should "generate Pentominoes correctly" in {
     val expected = List[Polyomino](
       List((0,0), (0,1), (1,1), (1,2), (2,1)),
       List((0,0), (0,1), (0,2), (1,0), (1,1)),

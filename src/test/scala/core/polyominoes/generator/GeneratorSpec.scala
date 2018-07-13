@@ -1,4 +1,4 @@
-package generator
+package core.polyominoes.generator
 
 import org.scalatest.{FlatSpec, Matchers}
 import scala.language.implicitConversions
