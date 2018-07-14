@@ -58,9 +58,8 @@ private[generator] trait Generator {
   }
 
   def rank(n: Int): List[Polyomino] = {
-    require(n >= 0)
+    require(n >= 1)
     n match {
-      case 0 => Nil
       case 1 => monominos
       case _ => rank(n - 1).flatMap(newPolyominos).distinct
     }
