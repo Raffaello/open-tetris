@@ -6,26 +6,26 @@ import scala.language.implicitConversions
 
 private[generator] trait Generator {
 
-  def rotate90(p: Point): Point = (p._2, -p._1)
+  private[generator] def rotate90(p: Point): Point = (p._2, -p._1)
 
-  def rotate180(p: Point): Point = (-p._1, -p._2)
+  private[generator] def rotate180(p: Point): Point = (-p._1, -p._2)
 
-  def rotate270(p: Point): Point = (-p._2, p._1)
+  private[generator] def rotate270(p: Point): Point = (-p._2, p._1)
 
-  def reflect(p: Point): Point = (-p._1, p._2)
+  private[generator] def reflect(p: Point): Point = (-p._1, p._2)
 
-  def contiguous(p: Point): List[Point] = List(
+  private[this] def contiguous(p: Point): List[Point] = List(
     (p._1 - 1, p._2),
     (p._1 + 1, p._2),
     (p._1, p._2 - 1),
     (p._1, p._2 + 1),
   )
 
-  def minima(polyomino: Polyomino): Point = {
+  private[this] def minima(polyomino: Polyomino): Point = {
     polyomino.reduce((a, b) => (Math.min(a._1, b._1), Math.min(a._2, b._2)))
   }
 
-  def translateToOrigin(polyomino: Polyomino): Polyomino = {
+  private[this] def translateToOrigin(polyomino: Polyomino): Polyomino = {
     val m = minima(polyomino)
     polyomino.map(p => (p._1 - m._1, p._2 - m._2))
   }

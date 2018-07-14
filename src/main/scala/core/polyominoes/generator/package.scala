@@ -1,7 +1,6 @@
 package core.polyominoes
 
 import java.io._
-import java.nio.charset.StandardCharsets
 
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
@@ -34,6 +33,7 @@ package object generator {
     * todo: could use the Loan Patter to auto close the resource
     * todo: FP for handling exceptions
     * todo: redo it
+    *
     * @param fname
     * @return
     */
@@ -51,7 +51,7 @@ package object generator {
     for (i <- 1 to n) {
       val rowString = lines(i).toString
       val row = syntax.findAllIn(rowString)
-      while(row.hasNext) {
+      while (row.hasNext) {
         val polyomino = digits
           .findAllMatchIn(row.next())
           .toList
@@ -59,8 +59,8 @@ package object generator {
           .grouped(2)
           .toList
           .collect {
-          case a :: b :: Nil => (a,b)
-        }
+            case a :: b :: Nil => (a, b)
+          }
 
         polyominoes += polyomino
       }

@@ -7,6 +7,7 @@ class OneSideSpec extends FlatSpec with Matchers {
 
   "OneSide core.polyominoes.generator" should "generate Dominos correctly" in {
     rank(2) should be(List(List((0, 0), (0, 1))))
+
   }
 
   "OneSide iterator" should "generate until dominos correctly" in {
