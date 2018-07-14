@@ -4,19 +4,19 @@ version := "0.1"
 
 scalaVersion := "2.12.6"
 
+scalacOptions ++= Seq("-deprecation","-feature")
+
 logBuffered in Test := false
 logLevel := Level.Warn
 
-addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 
 libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.144-R12"
 libraryDependencies += "org.scalafx" %% "scalafxml-core-sfx8" % "0.4"
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.5"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 
-resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
+//resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
 resolvers += Opts.resolver.sonatypeSnapshots
+resolvers += "Typesafe Repository" at "https://repo.typesafe.com/typesafe/releases/"
 
-addSbtPlugin("com.artima.supersafe" % "sbtplugin" % "1.1.3")
-addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.5.1")
-addSbtPlugin("com.codacy" % "sbt-codacy-coverage" % "1.3.11")
+addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
