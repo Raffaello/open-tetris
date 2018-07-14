@@ -1,6 +1,7 @@
 package core.polyominoes
 
-import java.io.{BufferedWriter, File, FileWriter}
+import java.io._
+import java.nio.charset.StandardCharsets
 
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
@@ -20,21 +21,19 @@ package object generator {
     * @param polyominoes
     */
   def save(fname: String, polyominoes: List[Polyomino]): Unit = {
-    val bw = new BufferedWriter(new FileWriter(new File(fname)))
-    val N = polyominoes.length
-    bw.write(N)
-    polyominoes.foreach{ polyomino =>
-      val M = polyomino.length
-      bw.write(M)
-      polyominoes.foreach(p => bw.write(p.mkString(" ")))
-    }
 
-    bw.close()
+    val pw = new PrintWriter(new FileWriter(new File(fname)))
+    val N = polyominoes.length
+
+    pw.println(N)
+    polyominoes.foreach(polyomino => pw.println(polyomino.mkString(", ")))
+    pw.close()
   }
 
   /**
     * todo: could use the Loan Patter to auto close the resource
     * todo: FP for handling exceptions
+    * todo: redo it
     * @param fname
     * @return
     */
@@ -43,15 +42,22 @@ package object generator {
     val bs = Source.fromFile(fname)
     val lines = bs.getLines().toArray
     bs.close
-    val N = lines(0).toInt
+
+    val n = lines(0).toInt
+    // todo: wrong rex exp (0,0), (0,1) => (0,1) only match
+    val r = """^(\((\d+),\s*(\d+)\),?\s*)+""".r
     val polyominoes = new ListBuffer[Polyomino]
     val polyomino = new ListBuffer[Point]
-    for(i <- 1 until lines.length) {
-      val M = lines(i).toInt
+
+    for (i <- 1 to n) {
+      val rowString = lines(i).toString
+      val row = r.findAllMatchIn(rowString)
+
       polyomino.clear()
-      for(j <- 0 until M) {
-//        val row = lines()
-        polyomino += ((1,1))
+      while(row.hasNext) {
+        val m = row.next()
+        assert(m.groupCount == 2)
+        polyomino += ((m.group(1).toInt, m.group(2).toInt))
       }
 
       polyominoes += polyomino.toList
