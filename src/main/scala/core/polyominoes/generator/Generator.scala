@@ -68,6 +68,7 @@ private[generator] trait Generator {
 
   def accumulativeRank(n: Int): List[Polyomino] = {
     require(n >= 1)
+
     @tailrec
     def innerLoop(n: Int, acc: ListBuffer[Polyomino]): ListBuffer[Polyomino] = {
       n match {

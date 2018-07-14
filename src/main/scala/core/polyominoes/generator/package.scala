@@ -44,23 +44,26 @@ package object generator {
     bs.close
 
     val n = lines(0).toInt
-    // todo: wrong rex exp (0,0), (0,1) => (0,1) only match
-    val r = """^(\((\d+),\s*(\d+)\),?\s*)+""".r
+    val syntax = """^(\((\d+),\s*(\d+)\),?\s*)+""".r
+    val digits = """\d+""".r
     val polyominoes = new ListBuffer[Polyomino]
-    val polyomino = new ListBuffer[Point]
 
     for (i <- 1 to n) {
       val rowString = lines(i).toString
-      val row = r.findAllMatchIn(rowString)
-
-      polyomino.clear()
+      val row = syntax.findAllIn(rowString)
       while(row.hasNext) {
-        val m = row.next()
-        assert(m.groupCount == 2)
-        polyomino += ((m.group(1).toInt, m.group(2).toInt))
-      }
+        val polyomino = digits
+          .findAllMatchIn(row.next())
+          .toList
+          .map(x => x.matched.toInt)
+          .grouped(2)
+          .toList
+          .collect {
+          case a :: b :: Nil => (a,b)
+        }
 
-      polyominoes += polyomino.toList
+        polyominoes += polyomino
+      }
     }
 
     polyominoes.toList
