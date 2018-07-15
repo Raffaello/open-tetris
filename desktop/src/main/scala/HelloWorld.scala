@@ -11,23 +11,23 @@ object HelloWorld extends JFXApp {
 
   stage = new application.JFXApp.PrimaryStage {
     title.value = "open-tetris: Hello World ScalaFX"
-    width = 320
-    height = 200
+    width = 640
+    height = 480
     scene = new Scene {
-      fill = Color.Aquamarine
+      fill = Color.Black
       content = new HBox {
         padding = Insets(50, 80, 50, 80)
         children = Seq(
           new Text {
             text = "Open"
-            //            style = "-fx-font: normal bold 100pt sans-serif"
+            style = "-fx-font: normal bold 50pt sans-serif"
             fill = new LinearGradient(
               endX = 0,
               stops = Stops(Color.Red, Color.DarkRed))
           },
           new Text {
             text = "Tetris"
-            style = "-fx-font: italic bold 100pt sans-serif"
+            style = "-fx-font: italic bold 50pt sans-serif"
             fill = new LinearGradient(
               endX = 0,
               stops = Stops(Color.White, Color.DarkGray)
