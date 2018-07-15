@@ -11,7 +11,7 @@ scala:
 #before_install:
 #  - "export DISPLAY=:99.0"
 #  - "sh -e /etc/init.d/xvfb start"
-- jdk:
+jdk:
   - oraclejdk10
 
 #install:
