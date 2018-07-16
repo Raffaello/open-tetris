@@ -25,8 +25,10 @@ cache:
     - '$HOME/.sbt/boot/'
 
 script:
-  - sbt clean coverage test coverageReport
-  - sbt coverageAggregate
+  - sbt clean coverage test
+  - sbt coverageReport coverageAggregate
+#  - sbt coverageReport
+#  - sbt coverageAggregate
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
