@@ -34,3 +34,13 @@ lazy val desktop = project
     fork := true,
     scalacOptions ++= Seq("-unchecked", "-Xcheckinit", "-encoding", "utf8")
   ).dependsOn(shared)
+
+lazy val web = project
+  .settings(
+    commonSettings,
+    name := "open-tetris-web",
+    scalaJSUseMainModuleInitializer := true,
+    libraryDependencies += "org.scala-js"  %%% "scalajs-dom" % "0.9.6",
+    skip in packageJSDependencies := true
+  ).enablePlugins(ScalaJSPlugin)
+  .dependsOn(shared)
