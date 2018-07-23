@@ -1,7 +1,6 @@
 import sbt.Keys.{libraryDependencies, logLevel, resolvers, scalacOptions, version}
 
 lazy val commonSettings = Seq(
-  //  name := "open-tetris",
   version := "0.1",
   scalaVersion := "2.12.6",
   scalacOptions ++= Seq("-deprecation", "-feature"),
