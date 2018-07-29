@@ -16,6 +16,7 @@ object PolyominoesDrawingTest extends JFXApp {
 
   /**
     * Monomio example incomplete
+    *
     * @param gc
     * @param color
     * @param x
@@ -37,6 +38,14 @@ object PolyominoesDrawingTest extends JFXApp {
     gc.strokeRect(x, y, w, h)
   }
 
+
+  def tetronimoT(gc: GraphicsContext, color: Color, x: Double, y: Double, w: Double, h: Double) = {
+    rectangle(gc, color, x, y, w, h)
+    rectangle(gc, color, x + w, y, w, h)
+    rectangle(gc, color, x + w + w, y, w, h)
+    rectangle(gc, color, x + w, y + h, w, h)
+  }
+
   stage = new application.JFXApp.PrimaryStage {
     title.value = "open-tetris: monomio"
     width = settings.video.getInt("width")
@@ -51,7 +60,10 @@ object PolyominoesDrawingTest extends JFXApp {
   rectangle(gc, Color.Red, 50, 50, 50, 50)
 
   // domino
-  val (x,y,w,h) = (50,100,50,50)
-  rectangle(gc, Color.Yellow ,x ,y ,w, h)
-  rectangle(gc, Color.Yellow, x+w, y, w, h)
+  val (x, y, w, h) = (50, 100, 50, 50)
+  rectangle(gc, Color.Yellow, x, y, w, h)
+  rectangle(gc, Color.Yellow, x + w, y, w, h)
+
+  //tetronimoT
+  tetronimoT(gc, Color.Green, 50, 200, 50, 50)
 }
