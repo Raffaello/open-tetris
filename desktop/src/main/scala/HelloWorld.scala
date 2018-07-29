@@ -6,13 +6,14 @@ import scalafx.scene.effect.DropShadow
 import scalafx.scene.layout.HBox
 import scalafx.scene.paint.{Color, LinearGradient, Stops}
 import scalafx.scene.text.Text
+import core.settings
 
 object HelloWorld extends JFXApp {
 
   stage = new application.JFXApp.PrimaryStage {
     title.value = "open-tetris: Hello World ScalaFX"
-    width = 640
-    height = 480
+    width = settings.video.getInt("width")
+    height = settings.video.getInt("height")
     scene = new Scene {
       fill = Color.Black
       content = new HBox {

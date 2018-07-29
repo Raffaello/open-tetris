@@ -31,10 +31,10 @@ class FreeSpec extends FlatSpec with Matchers {
   }
 
   "Free iterator" should "generate until dominos correctly" in {
-    Free.accumulativeRank(2) should be(List(monomino, List((0, 0), (0, 1))))
+    Free.cumulativeRank(2) should be(List(monomino, List((0, 0), (0, 1))))
   }
 
   "Free iterator" should "generate until pentominoes correctly" in {
-    Free.accumulativeRank(5) should have size (12 + 5 + 2 + 1 + 1)
+    Free.cumulativeRank(5) should have size (12 + 5 + 2 + 1 + 1)
   }
 }

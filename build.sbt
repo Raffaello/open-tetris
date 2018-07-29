@@ -3,12 +3,14 @@ import sbt.Keys.{libraryDependencies, logLevel, resolvers, scalacOptions, versio
 lazy val commonSettings = Seq(
   version := "0.1",
   scalaVersion := "2.12.6",
-  scalacOptions ++= Seq("-deprecation", "-feature"),
+  scalacOptions ++= Seq("-deprecation", "-feature"/*, "-Ypartial-unification"*/),
   logBuffered in Test := false,
   logLevel := Level.Warn,
   libraryDependencies ++= Seq(
     "org.scalactic" %% "scalactic" % "3.0.5",
-    "org.scalatest" %% "scalatest" % "3.0.5" % "test"
+    "org.scalatest" %% "scalatest" % "3.0.5" % "test",
+    "com.typesafe" % "config" % "1.3.3"/*,
+    "org.typelevel" %% "cats-core" % "1.2.0"*/
   ),
   resolvers ++= Seq(
     Opts.resolver.sonatypeSnapshots,

@@ -65,7 +65,7 @@ private[generator] trait Generator {
     }
   }
 
-  def accumulativeRank(n: Int): List[Polyomino] = {
+  def cumulativeRank(n: Int): List[Polyomino] = {
     require(n >= 1)
 
     @tailrec
