@@ -9,13 +9,20 @@ lazy val commonSettings = Seq(
   libraryDependencies ++= Seq(
     "org.scalactic" %% "scalactic" % "3.0.5",
     "org.scalatest" %% "scalatest" % "3.0.5" % "test",
-    "com.typesafe" % "config" % "1.3.3"/*,
+    "com.typesafe" % "config" % "1.3.3",
+    "com.github.ktakagaki.breeze" %% "breeze" % "0.15.1"
+//    "org.scalanlp" %% "breeze" % "0.15.1",
+//    "org.scalanlp" %% "breeze-natives" % "0.15.1",
+//    "org.scalanlp" %% "breeze-viz" % "0.15.1"
+    /*,
     "org.typelevel" %% "cats-core" % "1.2.0"*/
   ),
   resolvers ++= Seq(
     Opts.resolver.sonatypeSnapshots,
     "Typesafe Repository" at "https://repo.typesafe.com/typesafe/releases/",
     "Artima Maven Repository" at "http://repo.artima.com/releases"
+//    "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/",
+//    "Sonatype Releases" at "https://oss.sonatype.org/content/repositories/releases/"
   )
 )
 

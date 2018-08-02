@@ -10,6 +10,7 @@ package object settings {
 
   val core: Config = config.getConfig("core")
   val polyominoes: Config = core.getConfig("polyominoes")
+  val board: Config = core.getConfig("board")
   val sounds: Config = core.getConfig("sounds")
   //  val fx: Config = sounds.getConfig("fx")
   //  val music: Config = sounds.getConfig("music")
@@ -17,6 +18,8 @@ package object settings {
   val fonts: Config = core.getConfig("fonts")
   val gameplay: Config = core.getConfig("gameplay")
 
+
   Polyominoes.checkValid(polyominoes)
   Video.checkValid(video)
+  Board.checkValid(board)
 }
